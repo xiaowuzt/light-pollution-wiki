@@ -52,9 +52,9 @@ function brand(){return `<a class="brand" href="#/" aria-label="${t('光污染�
 function contactDetails(){return `<address class="contact-details" aria-label="${t('联系方式','Contact')}"><p><span>${t('中国 QQ 群','China QQ group')}：</span><span>${contact.qqGroup}</span></p><p><span>${t('邮箱','Email')}：</span><a href="mailto:${contact.email}">${contact.email}</a></p></address>`}
 function chrome(route){
  document.documentElement.lang = lang === 'zh' ? 'zh-CN' : 'en';
- const nav=[['/spells',t('法术图鉴','Spell atlas')],['/guide/start',t('游玩指南','Player guide')],['/equipment',t('装备','Equipment')],['/guide/updates',t('版本说明','Version notes')]];
+ const nav=[['/spells',t('法术图鉴','Spell atlas')],['/guide/start',t('游玩指南','Player guide')],['/text-effects',t('文字特效','Text effects')],['/equipment',t('装备','Equipment')],['/guide/updates',t('版本说明','Version notes')]];
  $('#header').innerHTML=`<div class="container nav-wrap">${brand()}<nav id="navigation" class="nav-links" aria-label="${t('主导航','Main navigation')}">${nav.map(([url,label])=>`<a href="#${url}" ${route===url||url==='/spells'&&route.startsWith('/spell/')?'aria-current="page"':''}>${label}</a>`).join('')}</nav><div class="nav-tools"><button class="language" id="language" aria-label="${t('Switch to English','切换到简体中文')}" lang="${t('en','zh-CN')}">${t('EN','中文')} <span aria-hidden="true">⌄</span></button><a class="nav-download" href="${cf}" target="_blank" rel="noopener noreferrer">${t('下载模组','Get the mod')} ↗</a><button class="menu-toggle" aria-expanded="false" aria-controls="navigation">${t('菜单','Menu')}</button></div></div>`;
- $('#footer').innerHTML=`<div class="container"><div class="footer-top"><div>${brand()}<p>${t('将遥远天体，写进你的法术书。<br>Iron’s Spells ’n Spellbooks 附属玩家百科。','Distant worlds, written in your spellbook.<br>A player reference for the Iron’s Spells ’n Spellbooks addon.')}</p></div><div class="footer-resources"><div class="footer-links"><a href="#/spells">${t('法术图鉴','Spell atlas')}</a><a href="#/guide/faq">${t('常见问题','FAQ')}</a><a href="${cf}" target="_blank" rel="noopener noreferrer">CurseForge ↗</a></div>${contactDetails()}</div></div><div class="footer-bottom"><span>Iron’s Spells: Light Pollution · ${t('小刚同学','Xiaogang')}<br>${t('内容快照','Content snapshot')} ${data.snapshot} · ${t('含 1.7.7 待发布条目；以已安装版本为准。','Includes 1.7.7 previews; availability depends on your installed version.')}</span><a href="#/guide/credits">${t('关于本站与素材致谢','About this wiki & credits')}</a></div></div>`;
+ $('#footer').innerHTML=`<div class="container"><div class="footer-top"><div>${brand()}<p>${t('将遥远天体，写进你的法术书。<br>Iron’s Spells ’n Spellbooks 附属玩家百科。','Distant worlds, written in your spellbook.<br>A player reference for the Iron’s Spells ’n Spellbooks addon.')}</p></div><div class="footer-resources"><div class="footer-links"><a href="#/spells">${t('法术图鉴','Spell atlas')}</a><a href="#/text-effects">${t('文字特效工作台','Text effect workshop')}</a><a href="#/guide/faq">${t('常见问题','FAQ')}</a><a href="${cf}" target="_blank" rel="noopener noreferrer">CurseForge ↗</a></div>${contactDetails()}</div></div><div class="footer-bottom"><span>Iron’s Spells: Light Pollution · ${t('小刚同学','Xiaogang')}<br>${t('内容快照','Content snapshot')} ${data.snapshot} · ${t('含 1.7.7 待发布条目；以已安装版本为准。','Includes 1.7.7 previews; availability depends on your installed version.')}</span><a href="#/guide/credits">${t('关于本站与素材致谢','About this wiki & credits')}</a></div></div>`;
  $('#language').addEventListener('click',()=>{lang=lang==='zh'?'en':'zh';storage.set('lp-wiki-language',lang);render(false)});
  $('.menu-toggle').addEventListener('click',e=>{const open=e.currentTarget.getAttribute('aria-expanded')!=='true';e.currentTarget.setAttribute('aria-expanded',String(open));$('#navigation').classList.toggle('open',open)});
 }
@@ -171,6 +171,7 @@ function equipment(){return `<div class="container page-top"><div class="eyebrow
  ['III',t('星磁弦弓','Star-Magnet Bow'),t('通过星磁赋能补满三发。命中后形成持续十秒的磁力奇点，随后爆发。','Refill three shots with Magnetic Imbuement. Impacts form a magnetic singularity for ten seconds before bursting.')]
  ].map(([n,name,desc])=>`<article class="equipment-card"><div class="equipment-mark" aria-hidden="true">${n}</div><h3>${name}</h3><p>${desc}</p><a class="text-link" style="margin-top:24px" href="#/guide/equipment">${t('查看使用指南','Read the guide')} ${arrow}</a></article>`).join('')}</div></div>`}
 function render(move=true){
+ window.WikiTextEffects?.reset();
  window.WikiShowcase?.reset();
  window.WikiMotion?.reset();
  hideItemTooltip();
@@ -181,6 +182,7 @@ function render(move=true){
  else if(route==='/spells'){html=catalogue(new URLSearchParams(query));title=t('法术图鉴','Spell atlas')+' · Light Pollution'}
  else if(route.startsWith('/spell/')&&spell(route.slice(7))){const s=spell(route.slice(7));html=detail(s);title=local(s.name)+' · Light Pollution Wiki'}
  else if(route.startsWith('/guide/')&&guideNames[route.slice(7)]){html=guide(route.slice(7));title=named(guideNames,route.slice(7))+' · Light Pollution Wiki'}
+ else if(route==='/text-effects'){html=window.WikiTextEffects.page(lang);title=t('文字特效工作台','Text effect workshop')+' · Light Pollution Wiki'}
  else if(route==='/equipment'){html=equipment();title=t('装备','Equipment')+' · Light Pollution Wiki'}
  else html=`<div class="error-page"><div class="eyebrow">404 / UNCHARTED SPACE</div><h1>${t('这颗星，还不在图鉴里。','This star is not in the atlas.')}</h1><p>${t('链接可能有误。回到图鉴继续寻找法术。','This link may be incorrect. Return to the atlas to find a spell.')}</p><a class="btn primary" href="#/spells">${t('返回法术图鉴','Back to the atlas')} ${forward}</a></div>`;
  $('#main').innerHTML=html;document.title=title;
@@ -191,6 +193,7 @@ function render(move=true){
  if(move){window.scrollTo({top:0,behavior:'instant'});$('#main').focus({preventScroll:true})}
  window.WikiMotion?.mount();
  window.WikiShowcase?.mount(lang);
+ if(route==='/text-effects')window.WikiTextEffects.mount(lang);
 }
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){hideItemTooltip();$('#navigation')?.classList.remove('open');$('.menu-toggle')?.setAttribute('aria-expanded','false')}});
 document.addEventListener('pointerdown',e=>{if(!e.target.closest('.item-trigger,#item-tooltip'))hideItemTooltip()});

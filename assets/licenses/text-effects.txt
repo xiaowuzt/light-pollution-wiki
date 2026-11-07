@@ -1,0 +1,441 @@
+Text preview adaptations
+
+Animation formulae adapted from Iron's Spells: Light Pollution TextAnim.java and DynamicTextRenderer.java.
+TextAnimator-derived motion: Copyright 2023 Snownee, Apache License 2.0.
+Outline/glow/fringe algorithms derived from TheSalts Text_Effects, MIT.
+Robert Penner bounce easing via Tween.js, MIT.
+Browser adaptation: separate glyph atlas, WebGL 1 uniforms, browser canvas rasterization.
+
+Copyright 2023 Snownee
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+# Third-party notices
+
+This project contains original code and assets together with the adapted or
+bundled material listed below. The project `LICENSE` applies only to original
+Iron's Spells: Light Pollution code and assets. Each component keeps its own
+license and attribution requirements.
+
+## Gemini
+
+The `Funeral Nova` and `Eclipse Severance` renderers and their GLSL shaders
+port or adapt `KillEffect` and `SweepingAttackVFX` by AirZone-Team:
+
+- Repository: <https://github.com/AirZone-Team/Gemini>
+- Referenced post-processing revision: `25db876842c10c9d98dc4089e4f9873bade6d01a`
+- License: GNU Lesser General Public License, version 2.1, only
+  (`LGPL-2.1-only`)
+
+The affected shader files retain source comments identifying the Gemini port.
+The LGPL text is included in `LICENSE.txt`; this notice must remain with
+redistributed source and binaries.
+
+## CeliaClaire ShaderTest
+
+The `Stargrave Singularity` black-hole renderer and shaders are adapted from
+CeliaClaire's `ShaderTest` project under its MIT terms. The attribution in the
+renderer and this notice must be preserved.
+
+## Some of FX
+
+Singularity's screen-space refraction, lightning, noise/core textures, and
+sound effects derive from Some of FX by Pizuka:
+
+- Repository: <https://github.com/YangMao-Minister/some_of_fx>
+- License: MIT
+
+The full notice is included in
+`src/main/resources/assets/irons_spellbooks_light_pollution/textures/effect/SOME_OF_FX_LICENSE.txt`
+and in the built jar.
+
+## Lightning Lab (Thunder Reprisal)
+
+Thunder Reprisal (`thunder_retribution` / 逆霆天罚) adapts Lightning Lab's
+fractal bolt geometry, layered halo/core rendering, projected segment joins
+and depth-aware compositing under the supplied MIT terms:
+
+- Copyright (c) 2026 Lightning Lab contributors.
+- Adapted Java sources: `src/main/java/com/gang/lightpollution/thunder/lightning/`.
+- Adapted bolt shaders: `src/main/resources/assets/irons_spellbooks_light_pollution/shaders/thunder/bolt_*`.
+- The accompanying notice is shipped as `META-INF/licenses/thunder-lightning-MIT.txt`
+  from the matching file under `src/main/resources/`.
+
+The integration adds the spell's server-authoritative timeline, target tracking,
+damage and lifecycle rules, cloud presentation and dedicated icon. The source
+project's Simplex noise implementation is not bundled. Preserve the supplied
+copyright and permission notice with redistribution of these adapted portions.
+
+## TextAnimator and text effect code
+
+The base animated text effect mathematics is ported from Snownee's
+`TextAnimator` under Apache License 2.0. The full applicable notice is in
+`TEXTANIMATOR_LICENSE.txt`.
+
+Additional small text-effect portions follow the MIT terms of TheSalts'
+`Text_Effects` and Robert Penner's easing implementation as distributed by
+Tween.js. Their attributions are retained in `CREDITS.txt` and in the source
+comments.
+
+## ArcaneVortex and Star Nest
+
+Several tooltip, world-text, and Gargantua rendering portions are adapted from
+ArcaneVortex by ErChien. ArcaneVortex remains All Rights Reserved. The original
+author has expressly permitted this mod to use those portions; that permission
+does not relicense the ArcaneVortex project or grant permission to redistribute
+ArcaneVortex itself.
+
+Nocturne Verdict (`nocturne_verdict` / 寂夜裁决) additionally adapts the supplied
+ArcaneVortex 0.7.10 ZSWJ weapon's beam, hit geometry, particles, decals, hand
+animation, sound and shader resources. Its item presentation adapts the
+`luo` (午夜谔) two-stage rim and `binary_ingot` inventory treatment. The shared
+impact-feedback shader adapts `System/IFSystem.java` and
+`shaders/program/perspective_blur.fsh`; the unchanged shader is also kept as a
+test reference under `src/test/resources/reference/arcanevortex/`.
+The project owner expressly confirmed authorization for this reference work.
+The independent equipment, survival recipes and damage integration do not
+relicense the upstream assets. Detailed source mappings are recorded in the
+Nocturne documentation and source comments.
+
+The volumetric star field is Kali's `Star Nest` shader from Shadertoy, used via
+ArcaneVortex with permission and credited in `CREDITS.txt`.
+
+## Gargantua With HDR Bloom (Event Horizon)
+
+Event Horizon (`event_horizon` / 无光视界) adapts the shader source provided by
+the project owner for **Gargantua With HDR Bloom**, by **sonicether**:
+
+- Original: <https://www.shadertoy.com/view/lstSRS>
+- Original publication date shown on the reference page: 2016-04-07
+- Adapted material: bent-ray integration, accretion-disc and haze functions,
+  noise helpers, HDR bloom/compositing ideas and the Image pass's colour curve.
+- Affected files: `event_horizon_trace.fsh`, `event_horizon_bloom.fsh`,
+  `event_horizon_composite.fsh`, their companion render pipeline, and the
+  spell icon derived from a render of the adapted shaders.
+- The supplied source credits its noise function to **iq (Inigo Quilez)**;
+  that credit is retained in the adapted shader.
+
+Changes for Minecraft include a world-space camera and fixed disc orientation,
+scene-depth occlusion, background refraction, a separate HDR bloom pyramid,
+bounded adaptive sampling and spell-only colour grading. The original external
+Shadertoy channel textures are not bundled: local procedural noise and disc
+modulation are used instead. No screenshot from the reference site is bundled.
+
+**Permission status: unverified.** The supplied text has no clear licence grant,
+and a licence for this specific shader has not been confirmed. Attribution is
+not permission. This adaptation is not covered by the project's original-code
+licence. Confirm the applicable upstream terms or obtain the author's permission
+before publicly distributing the adapted code, icon or a binary containing them;
+record the grant here once obtained.
+
+## GR BH with volume accretion disk (Redshift Abyss)
+
+Redshift Abyss (`redshift_abyss` / 赤移天渊) adapts the project-owner-supplied
+source for **GR BH with volume accretion disk**, by **baopinsui**:
+
+- Original: <https://www.shadertoy.com/view/4XcfR2>
+- Publication date shown on the reference page: 2025-01-20.
+- The page identifies it as a fork of **Black Hole test**. The supplied source
+  credits its bloom/Image passes to **sonicether / Gargantua With HDR Bloom**
+  (<https://www.shadertoy.com/view/lstSRS>).
+- Adapted portions: Schwarzschild-style ray bending, Keplerian disk motion,
+  volume density/noise, temperature/Kelvin colour, gravitational and Doppler
+  shifts, and HDR bloom/filmic colour concepts. The periodic correlated value
+  noise implementation follows the **iq (Inigo Quilez)** helper already credited
+  for Event Horizon.
+- Affected files: `redshift_abyss_trace.fsh`, `redshift_abyss_bloom.fsh`,
+  `redshift_abyss_composite.fsh`, the companion rendering pipeline and the
+  icon generated from a synthetic render of these adapted shaders.
+
+Minecraft-specific changes use normalized Schwarzschild-radius coordinates,
+world-camera/depth integration, slab-clipped bounded ray steps, finite optical
+transport, periodic angular noise, world-space orientation, independent runtime
+appearance settings and spell-only grading. Density detail is adjusted to work
+without the original temporal feedback buffers. External Shadertoy textures,
+reference screenshots and the supplied text file are not bundled in the runtime
+JAR. A verbatim owner-supplied source copy was used for the local integration
+audit; that audit copy is not bundled in the release and is not a claim of
+redistribution permission.
+
+**Permission status: unverified.** No clear licence grant appears in the supplied
+text; a licence for this particular shader and all its upstream portions has not
+been confirmed. Attribution is not permission. This adaptation is not covered by
+the project's original-code licence. Confirm the applicable upstream terms or
+obtain permission before distributing the adapted source, icon or a containing
+binary; record the grant here once obtained.
+
+## Forge/FML and dependencies
+
+Forge/FML and MCP-related template material retain the notices and LGPL text in
+`LICENSE.txt`. Iron's Spells 'n Spellbooks, Iron's Lib, Minecraft, and optional
+JEI are runtime/build dependencies; they are not relicensed by this project.
+Their own licenses and notices apply.
+
+
+## Black-hole family: isolated R2, R4 and R5 adaptations (R6 code is not in the build)
+
+The local source audit and acquisition evidence are kept outside the release
+package. Shared Minecraft camera, depth,
+parameter and entity plumbing is local integration code; the authors' rendering
+cores remain separate. This does not relicense any upstream shader.
+
+### R2 / R7 — Eric Bruneton
+
+- Source: https://github.com/ebruneton/black_hole_shader
+- Paper (principles): Real-time High-Quality Rendering of Non-Rotating Black Holes,
+  arXiv:2010.08735, Eric Bruneton, 2020.
+- The fetched Git tree SHA / raw-source revision token is
+  `e72b3f293409893a6fa25528b29572c96fc57f57`; this audit does not label it a commit SHA.
+- R2 is BSD-3-Clause. The complete upstream notice is bundled as
+  `META-INF/licenses/black-hole-R2-BSD-3-Clause.txt`
+  and copied to the local source audit only.
+- Adapted files: `shaders/include/bh_r2_geodesic.glsl`,
+  `shaders/core/schwarzschild_lens.fsh`, and `scripts/BlackHoleLutGenerator.java`.
+  `textures/effect/black_hole/deflection.lut` and `inverse-radius.lut` are generated
+  local data, not the upstream demo's images or star catalogues.
+- The integration keeps Schwarzschild deflection/disc intersection lookup, but
+  uses a finite-resolution LUT, a thin emissive calibration ring and screen-space
+  Minecraft background reprojection. It does NOT reproduce the paper's full beam
+  filtering/star catalogue, exact off-screen scene or relativistic gameplay.
+
+### R4 — Xor / Blackhole
+
+- Reference: https://fragcoord.xyz/s/bdf4dchf
+- Public metadata attributes the shader to Xor and links
+  https://x.com/XorDev/status/1897669357934608590.
+- Retrieved Common and Main source passes are retained separately in the audit.
+  Only this analytic ring core is adapted in `radiant_collapse.fsh`; explicit
+  loop initialization and finite arithmetic replace undefined/singular cases.
+- Permission UNVERIFIED. Public visibility and `source_hidden=false` establish
+  source availability, not a licence grant. Confirm terms before distribution.
+
+### R5 — owner-supplied Shadertoy section A (R6 code is not in the build)
+
+- R5: https://www.shadertoy.com/view/WltSDM — A section of `shadertoy代码.txt`,
+  adapted independently in `stasis_singularity.fsh` (Newtonian optical bending).
+- R6: https://www.shadertoy.com/view/wltSD7 — B section of that same supplied file.
+  Photon Corridor adapted this section, but that spell was removed from the build
+  on 2026-10-04. No R6 shader, path class or command is compiled or packaged.
+  Photon Corridor is only a pre-deletion record and is not shipped.
+- Original author identities and licences were NOT verified from the supplied
+  text. No author name or licence is invented. The marked source and each
+  extracted section have separate hashes in the audit manifest.
+- Permission UNVERIFIED for the R5 adaptation. R6 is no longer shipped;
+  attribution is not permission.
+
+The three remaining new spell icons are local procedural art, not copied from
+reference screenshots.
+The R1 icon retains the separately documented shader-derived permission caveat.
+R3's DEV page and public article API returned 404; no R3 source or implementation
+has been included. R7 is a principles reference, not an extra spell or a claimed
+implementation of every feature in the paper. Do not publicly redistribute the
+unverified adaptations (source or containing binaries) before resolving terms.
+
+## Boreal Descent / 北斗天坠 — authorized SevenStars adaptation
+
+Boreal Descent adapts only the SevenStars scene from the project-owner-supplied
+The Shooting Star Demo archive, including its required camera choreography,
+world/space/HUD rendering, pose and sound hooks, and supporting math and assets.
+ShootingStar, Gungnir, WhiteSpace and the original watermark are not included as
+additional spell flows. Shared asset names or original credits do not imply that
+those other spells have been ported.
+
+- Supplied archive: `the-shooting-star-demo-1.3.0-forge.jar`.
+- SHA-256: `c1f56dc14121ebd693401544024fec645d3cbbe442c1bfb1ea858f90d8cd3400`.
+- Manifest reference label: `mc1201`.
+- Provenance, individual resource hashes and rename maps:
+  `docs/boreal-reference-manifest.json`.
+- Adaptation notes, non-destructive differences and validation boundaries:
+  `docs/BOREAL_DESCENT.md`.
+
+**Authorization recorded:** the project owner/user expressly authorized use of
+the supplied JAR source and assets for this adaptation. This records that grant;
+it does not relicense the original demo, establish a blanket public licence for
+the archive, or grant broader rights to redistribute the original JAR. Embedded
+images and other third-party material retain their respective terms. The
+project's original-code licence does not replace those terms. No additional
+upstream author identity or licence is inferred where the supplied record does
+not identify it. This work is not a release or a redistribution approval.
+
+Minecraft integration changes include the Boreal package/resource namespace,
+GLSL identifier/file renames, server-authoritative scene snapshots, loaded-only
+world queries, ordinary cancellable `hurt()` damage with ally/PvP filtering,
+bounded target budgets, and an optional local camera. Original terrain carving,
+forced chunk tickets and non-living-entity discard behavior are not reproduced;
+crater/impact/finale presentation is visual and retains its original provenance
+rather than being claimed as original art. The finale adds no extra damage. These differences do not
+assert complete visual equivalence or remove any original attribution.
+
+### Image attribution retained verbatim
+
+The following two original credit files are retained in the resource tree and
+copied in full below and in `CREDITS.txt`. The quoted titles and source-relative
+paths are original text, not the names of additional bundled spells. The full
+credits mention some files (for example `jupiter.jpg`) outside the current port
+manifest; the manifest records which individual files were actually reused.
+
+Resource mappings, relative to `textures/`:
+
+| Original path | Boreal path |
+| --- | --- |
+| `moonfall/earth_day.jpg` | `boreal/terra_albedo.jpg` |
+| `moonfall/earth_lights.jpg` | `boreal/terra_emission.jpg` |
+| `moonfall/earth_clouds.jpg` | `boreal/terra_clouds.jpg` |
+| `moonfall/earth_height.jpg` | `boreal/terra_relief.jpg` |
+| `moonfall/moon_color.jpg` | `boreal/luna_albedo.jpg` |
+| `moonfall/milky_way.jpg` | `boreal/galactic_panorama.jpg` |
+| `shooting_star/milky_way_top.jpg` | `boreal/galactic_polar.jpg` |
+| `shooting_star/planets.jpg` | `boreal/planetary_atlas.jpg` |
+| `shooting_star/saturn_ring.jpg` | `boreal/chronos_rings.jpg` |
+
+The originals explicitly identify CC BY 4.0 for the listed Solar System Scope
+(INOVE) maps and the specified ESO imagery. Do not extend that statement to all
+NASA/GEBCO data, to the sounds, shaders or Java code, or to the archive as a
+whole. NASA/JPL-Caltech/ESO/R. Hurt and ESO/S. Brunier credits, the INOVE entry,
+and all other credited contributors and original links remain intact below.
+
+#### `textures/boreal/reference-terra-credits.txt`
+
+Original location: `textures/moonfall/CREDITS.txt`.
+
+```text
+Earth, Moon and Milky Way textures — real imagery, resampled for the shaders
+
+moon_color.jpg
+    NASA's Scientific Visualization Studio, CGI Moon Kit (LRO LROC WAC colour mosaic, LOLA elevation).
+    https://svs.gsfc.nasa.gov/4720/
+earth_day.jpg
+    NASA Earth Observatory, Blue Marble: Next Generation with topography and bathymetry (June 2004),
+    Reto Stöckli. https://science.nasa.gov/earth/earth-observatory/blue-marble-next-generation/
+earth_lights.jpg
+    NASA Earth Observatory, Black Marble 2016 (Suomi NPP VIIRS), Joshua Stevens / Miguel Román.
+    https://science.nasa.gov/earth/earth-observatory/earth-at-night/maps
+earth_height.jpg
+    NASA Earth Observatory / GEBCO_08 grid (British Oceanographic Data Centre), Jesse Allen.
+earth_clouds.jpg
+    NASA Goddard Space Flight Center, Blue Marble: Clouds, Reto Stöckli / Robert Simmon.
+    https://visibleearth.nasa.gov/images/57747/blue-marble-clouds
+milky_way.jpg
+    ESO/S. Brunier — The Milky Way panorama (eso0932a), licensed CC BY 4.0.
+    https://www.eso.org/public/images/eso0932a/
+```
+
+#### `textures/boreal/reference-atlas-credits.txt`
+
+Original location: `textures/shooting_star/CREDITS.txt`.
+
+```text
+The Shooting Star textures — real imagery, resampled for the shaders
+
+planets.jpg (Mercury, Venus, the Sun, Mars, Jupiter, Saturn, Uranus, Neptune), saturn_ring.jpg, jupiter.jpg
+    Solar System Scope (INOVE), planetary texture maps based on NASA elevation and imagery data,
+    licensed CC BY 4.0. https://www.solarsystemscope.com/textures/
+milky_way_top.jpg
+    NASA/JPL-Caltech/ESO/R. Hurt — Artist's impression of the Milky Way (eso1339g), licensed CC BY 4.0.
+    https://www.eso.org/public/images/eso1339g/
+Also used from ../moonfall: Blue Marble / Black Marble Earth, LRO Moon, ESO Milky Way panorama (see its CREDITS.txt).
+```
+
+All earlier notices in this file, including the separately unresolved black-hole
+shader permissions, remain unchanged and are not superseded by the Boreal grant.
+
+### Boreal runtime imagery update (2026-10-06)
+
+The original ESO Milky Way panorama listed above is historical provenance and is no longer bundled. The runtime uses `textures/boreal/galactic_panorama.png`, supplied by the user as `1791271194875.png`; no authorship or licence is inferred for this replacement. Other retained imagery and its credits are unchanged. Runtime hashes are recorded in `docs/boreal-runtime-assets.json`.
+
+## ArcaneVortex bow inventory, tooltip and Annihilation flowing geometry (updated 2026-10-07)
+
+ArcaneVortex 0.6.8 (ErChien) declares **All Rights Reserved**. The user supplied the
+archive and explicitly authorized decompilation and code/resource reuse. The bow
+UI adaptation and flowing-geometry reference rely on that user-supplied permission, not an inferred open-source
+license. Only the selected bow/UI material is included; the original mod is not
+a runtime dependency. Exact archive hash, source classes, copied/adapted paths
+and limitations are recorded in `docs/ARCANEVORTEX_BOW_PROVENANCE.md`. This notice
+does not replace earlier third-party notices or grant rights to the entire mod.
+
+The additional Annihilation reference uses the actually supplied local archive
+`<local reference path>`, not a downloaded substitute:
+`assets/arcanevortex/models/item/annihilation.json` (湮灭),
+`com.erchien.arcanevortex.CosmicRender.Neo.CosmicBakeModelNeo.renderGlowEdge`,
+its `annihilation_color` palette, and `assets/arcanevortex/shaders/core/glow_edge.fsh`
+(`uType == 3`). The October 7 correction retains the source `hash3`, `perlinNoise`
+and `flowing` GLSL equations and palette, and adapts its eight model-space displacements
+with positive face-normal dot-product selection to normal buffered item passes.
+The earlier independent neighbour-alpha contour and unrelated starfield were removed:
+Annihilation does not enable its loader's cosmic layer. No Annihilation PNG/model is copied.
+The user-approved six VanSh purple bow PNGs remain byte-identical imports; they are not
+claimed as original artwork or replaced by a local repaint. Normal models retain the
+original body on layer 0 and separate locally generated charge marks on layer 1.
+The `.54` first-person / `.76` third-person held poses are local adjustments, not
+byte-identical upstream pose data. The GUI ray/ring PNG imports are also retained.
+
+The corrected state/order adaptation preserves the source `glow_edge` **COLOR_WRITE**
+shard (`f_110115_`, not COLOR_DEPTH_WRITE) and shader JSON `srcalpha / 1-srcalpha` blend.
+Upstream base-first buffer submission is not the same as effective raster order:
+the dynamic glow buffer flushes before the fixed base buffers in the referenced path.
+The local wrapper expresses glow-first/base-last explicitly with glow depth writes
+disabled. The ordinary purple base fills the interior, leaving the exposed flowing
+geometry at its border. This is not a newly invented colour-selection texture.
+The source-function audit is not a claim of native visual or complete pipeline
+equivalence; those require separate verification.
+Time is monotonic seconds multiplied by ten rather than an upstream hourly reset.
+No upstream global item queue, framebuffer copy or hand-depth clear is imported.
+See `docs/ANNIHILATION_RENDERING.md` for the pinned bytecode/source audit and explicit
+source/material-versus-whole-game equivalence boundaries.
+The user's authorization is project-specific and does not relicense ArcaneVortex
+or independently establish a general redistribution grant.
+
+Animated bow/tooltip text remains the project's existing dynamic-text system,
+not an ArcaneVortex text-parser/font-renderer port introduced by this outline.
+The existing TextAnimator and other text-effect notices above remain applicable.
+
+
+The October 6, 2026 bow GUI/hover restoration additionally retains the original
+`rainbow_slime_block.fsh` fragment resource byte-for-byte and ports the
+`VanShBowGlowRender`, `EntityRemoverTooltipRenderer`, `RoundedRectRenderer`,
+`GradientConfig`, `ColorHelper.EntityRemover` and default `TimeSystem` math
+under the same project-specific user authorization described above. The vertex
+shader explicitly supplies the source's otherwise undefined `worldPos` varying.
+See `docs/BOW_REFERENCE_RESTORATION.md` for source, compatibility and verification
+boundaries. The project's own animated text system is not replaced by this port.
+
+## Nine Heavens Sword Art / 九霄剑决
+
+Sword formation math, sword mesh and two textures adapted from Roxio-sketch/minecraft-agent-skills, local 20261020 rendering suite (sword-formations). Copyright (c) 2026 Roxio-sketch, MIT. Full license: src/main/resources/META-INF/licenses/jiuxiao-sword-MIT.txt (included in the JAR). Homing combat and Forge rendering integration are local additions. See docs/JIUXIAO_SWORD.md.
+
+## Vortex spells / 三种龙卷
+
+Cloud density, liquid geometry/material and noise adapted from Roxio-sketch/minecraft-agent-skills,
+local 20261020 rendering suite, minecraft-volumetric-environment/workbench/vortex.
+Copyright (c) 2026 Roxio-sketch, MIT. Full license: src/main/resources/META-INF/licenses/vortex-MIT.txt
+(included in the JAR). The host scene composite, synchronized spell entities, combat and spell icons
+are local additions. No external fluid solver is bundled. See docs/VORTEX_SPELLS.md for the port boundary.
+
+## November 2026 wing and cinematic reference adaptation
+
+ArcaneVortex [Alpha] 0.7.10 (metadata author Luoee) supplied the wing-motion and material reference,
+under the user's explicit project authorization. The existing procedural feather
+implementation is retained. See docs/WING_REFERENCE_UPGRADE.md for the precise boundary.
+
+Catastrophe-Mod 2.3.1 by Lopezz (internal mod ID `galaxia`) supplied the Absolute
+Extinction and World Devourer rendering classes, GLSL, textures, sound effects,
+procedural meshes and cinematic timelines adapted in `extinction` and
+`celestialdragon`. Its supplied `META-INF/mods.toml` declares `license = "MIT"`;
+the supplied archive contains no separate license text. The user also explicitly
+authorized this project's source and resource adaptation. Original authorship is
+retained here; these assets are not represented as newly authored by this project.
+
+World mutation, terrain carving and dimension-changing gameplay are excluded.
+The Chinese dragon silhouette and Forge/Iron's Spells integration are local changes.
+Neither reference mod is a runtime dependency. See
+docs/REFERENCE_WINGS_AND_CATASTROPHE.md for implementation and validation scope.
