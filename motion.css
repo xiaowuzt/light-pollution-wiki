@@ -1,0 +1,39 @@
+/* Wiki motion choices complement the reference; Refero does not prescribe these timings. */
+.hero-meta { display: flex; flex-direction: column; align-items: flex-end; gap: var(--spacing-12); }
+.motion-toggle { display: inline-flex; align-items: center; gap: var(--spacing-8); min-height: 36px; padding: var(--spacing-8) var(--spacing-12); font-size: 11px; background: color-mix(in srgb, var(--canvas) 68%, transparent); color: var(--ivory); border: 1px solid var(--line); }
+.motion-toggle[hidden] { display: none; }
+[data-motion-icon] { display: inline-block; width: 12px; text-align: center; }
+.scroll-down .arrow { font-size: 16px; }
+
+@media (prefers-reduced-motion: no-preference) {
+ .hero-image { animation: mountain-drift 24s ease-in-out infinite alternate; }
+ .hero:not([data-ambient="running"]) .hero-image { animation-play-state: paused; }
+ header { transition: background-color 180ms ease, backdrop-filter 180ms ease; }
+ .item-tooltip:not([hidden]) { animation: tooltip-enter 140ms var(--ease); }
+ .arrow { transition: transform 180ms var(--ease); }
+ .btn:active { transform: translateY(1px) scale(.98); }
+ .item-trigger:active img { transform: scale(.92); }
+ .item-trigger img { transition: transform 140ms var(--ease); }
+ .school-filter, .level-switch button { transition: background 180ms, color 180ms; }
+ @media (hover: hover) {
+  :is(.feature, .spell-card, .guide-link, .related-item, .text-link, .btn):is(:hover, :focus-visible) .arrow { transform: translate(3px, -2px); }
+  .scroll-down:is(:hover, :focus-visible) .arrow { transform: translateY(4px); }
+ }
+ @media (max-width: 760px) {
+  .nav-links.open { animation: menu-enter 180ms var(--ease); }
+ }
+}
+
+@keyframes mountain-drift {
+ from { transform: scale(1.04) translate(0, 0); }
+ to { transform: scale(1.1) translate(-.6%, -.8%); }
+}
+@keyframes tooltip-enter { from { opacity: 0; translate: 0 4px; } to { opacity: 1; translate: 0 0; } }
+@keyframes menu-enter { from { opacity: 0; translate: 0 -8px; } to { opacity: 1; translate: 0 0; } }
+
+@media (max-width: 760px) {
+ .hero-bottom { flex-wrap: wrap; row-gap: var(--spacing-12); }
+ .hero-meta { width: 100%; flex-direction: row-reverse; align-items: center; justify-content: space-between; }
+ .hero-meta .photo-credit { max-width: none; }
+ .motion-toggle { font-size: 10px; }
+}

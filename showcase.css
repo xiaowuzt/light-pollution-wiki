@@ -1,0 +1,12 @@
+.spell-showcase{margin-block:var(--spacing-40)}
+.gameplay-media{margin:var(--spacing-20) 0 0;border:1px solid color-mix(in srgb,var(--color-slate-border) 35%,transparent);border-radius:var(--radius-cards);overflow:hidden;background:var(--surface-graphite-card)}
+.gameplay-media video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:var(--surface-onyx-canvas);object-fit:contain}
+.gameplay-media figcaption{padding:var(--card-padding)}
+.gameplay-media figcaption strong{font-size:var(--text-body-sm);font-weight:var(--font-weight-w480);color:var(--color-ivory-text);line-height:1.5}
+.gameplay-media figcaption strong span{color:var(--color-ash-text);font-weight:var(--font-weight-regular)}
+.gameplay-media figcaption p{margin:var(--spacing-12) 0;font-size:var(--text-body-sm);line-height:1.6}
+.showcase-actions{display:flex;align-items:center;flex-wrap:wrap;gap:var(--spacing-16);margin-top:var(--spacing-20);font-size:var(--text-body-sm)}
+.showcase-actions>a{text-underline-offset:4px}.showcase-actions>a:hover{text-decoration:underline}
+.showcase-actions>span{margin-left:auto;color:var(--color-ash-text);font-variant-numeric:tabular-nums}
+.gameplay-media .showcase-message[hidden]{display:none}
+@media(max-width:760px){.gameplay-media figcaption{padding:var(--spacing-16)}.showcase-actions{gap:var(--spacing-12)}.showcase-actions .btn{padding:var(--spacing-12) var(--spacing-16)}}
