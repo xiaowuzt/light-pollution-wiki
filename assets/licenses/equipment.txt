@@ -1,0 +1,16 @@
+Weapon images and recipe icons
+
+The weapon gallery uses the mod's original geometry, textures and existing Minecraft
+development screenshots, imported for this player Wiki at the project owner's request.
+Static model renders are labelled separately from in-game screenshots.
+
+Astral Staff and Endless Starsea: geometry emitted by AstralStaffGeometry with the
+mod's metal, nebula and star textures. Star-Magnet Bow: original layered item sprites
+and their extruded shape. Eternal Starlight (formerly Rift Verdict): the Nether Star Sword model supplied by the
+project owner, from Nazgul Fantasy Weaponry VANILLA Vol. 5. Amethyst Riftcleaver and
+Amber Sting use the same pack’s Amethyst Axe and Bee Dagger models. Model/texture attribution
+remains with its original creators; this Wiki does not relicense those assets.
+
+Minecraft and Iron's Spells 'n Spellbooks icons retain their original ownership.
+No game JARs, Java source or model-source archives are included in the published site.
+Source paths and checksums are retained in the local verification manifest only.
